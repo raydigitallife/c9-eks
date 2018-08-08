@@ -96,8 +96,7 @@ mkdir /home/ec2-user/environment/git
 
 cd /home/ec2-user/environment/git
 git clone https://github.com/kubernetes-incubator/metrics-server.git
-git clone https://github.com/raydigitallife/aws-kops.git
-git clone https://github.com/raydigitallife/shell.git
+git clone https://github.com/raydigitallife/c9-eks.git
 
 # update all
 sudo yum update -y
