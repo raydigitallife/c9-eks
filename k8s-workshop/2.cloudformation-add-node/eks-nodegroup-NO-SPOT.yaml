@@ -1,6 +1,6 @@
-# AWS所提供的Worker-Node-CloudFormatin檔案
-# 刪除AWS提供的部分EC2 Type，太高規格的測試用不到
-# AMI ID已經指定到 oregon佈署
+# AWS所提供的 Worker-Node-CloudFormatin 檔案
+# 刪除AWS提供的部分 EC2 Type，太高規格的測試用不到
+# AMI ID 已經指定到 oregon 佈署
 # 美國西部 (奧勒岡) (us-west-2)	ami-73a6e20b
 # 美國東部 (維吉尼亞北部) (us-east-1)	ami-dea4d5a1
 # add yum update -y
