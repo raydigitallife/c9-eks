@@ -1,0 +1,16 @@
+# EKS 建立後，依照 CloudFormation 步驟將 WorkerNode 啟動
+# 等候 CloudFormation 完成後取得 outputs value 填入 Rolearn 區段
+# 透過 Kubectl apply -f aws-auth-cm.yaml 將WorkerNode加入
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: <ARN of instance role (not instance profile)>
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes

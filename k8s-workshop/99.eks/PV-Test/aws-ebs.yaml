@@ -1,0 +1,31 @@
+
+# 因為NODE散佈在a,b,c節點，所以POD執行是隨機的，EBS需與EC2位於同一區
+# 所以需想辦法指定POD在特定的分區執行才能掛載起來
+# nodeSelector都無效，不知道是否資源過滿?
+# t2.small只能跑8個POD實在是很鳥，在上去一個等級會噴很多錢
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-ebs
+spec:
+  containers:
+  - image: k8s.gcr.io/test-webserver
+    name: test-container
+    volumeMounts:
+    - mountPath: /test-ebs
+      name: test-volume
+  nodeName: ip-172-31-42-29.us-west-2.compute.internal
+  
+  # 測試後這兩個指定節點的方式都可以使用，可以指定到特定的EC2執行掛載
+  # nodeName: ip-172-31-47-41.us-west-2.compute.internal
+  # nodeSelector:
+    # ebs: 10GB 這只是標籤名稱，想不出來要叫啥，隨便取的
+  
+  volumes:
+  - name: test-volume
+    # This AWS EBS volume must already exist.
+    awsElasticBlockStore:
+      volumeID: vol-055128a008faeb96f
+      fsType: ext4
+  

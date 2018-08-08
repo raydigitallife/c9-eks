@@ -1,0 +1,36 @@
+# 取得 kubernetes 目前的服務與節點狀態?
+
+kubectl get services,nodes
+
+# 透過 YAML 檔部署 NGINX 網頁，前端透由 AWS ELB 進入Pod
+
+kubectl apply -f nginx-1.14.0.yaml
+
+# 取得 NGINX 的部署結果
+
+kubectl get services,deployment
+
+# 擴展 NGINX 的 POD 數量
+
+kubectl scale deployment nginx --replicas=10
+
+# 觀察 kubernetes deploy 與 pod 數量
+
+kubectl get deployment,pods
+
+# 發現很多 Pod 狀態為 Pending , 可能是 Node 資源不足，所以先縮小 Pod 數量
+
+kubectl scale deployment nginx --replicas=4
+
+# 觀察 kubernetes deploy 與 pod 數量
+
+kubectl get deployment,pods
+
+# Pod 全數正常，完成測試，刪除測試的資源"
+
+kubectl delete -f nginx-1.14.0.yaml
+
+
+
+
+

@@ -1,0 +1,63 @@
+# apiVersion: apps/v1beta1
+# kind: Deployment
+# metadata:
+#   name: redis
+# spec:
+#   replicas: 1
+#   template:
+#     metadata:
+#     name: redis
+#     namespace: default
+
+#   spec:
+#     containers:
+#     - name: redis
+#       image: redis   
+#       volumeMounts:
+#     - name: redis-persistent-storage
+#       mountPath: /mnt
+#     volumes:
+#      - name: redis-persistent-storage
+#     # emptyDir: {}
+#     # volumeID: vol-0982f96676df23842
+#     # fstype: ext4
+#     nodeSelector:
+#     StorSpace: "ec2-ebs"
+
+
+# apiVersion: extensions/v1beta1
+# kind: Deployment
+# metadata:
+#   name: nginx-test
+# spec:
+#   replicas: 3
+#   template:
+#     metadata:
+#       name: nginx
+#       namespace: default
+#       labels:
+#         env: beta
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx
+#         imagePullPolicy: IfNotPresent
+#         ports:
+#         - containerPort: 80
+#       nodeSelector:
+#         StorSpace: "ec2-ebs"
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: task-pv
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  awsElasticBlockStore:
+    volumeID: vol-0aa46c2b9cc83b55e
+    fsType: ext4
+
+
+
