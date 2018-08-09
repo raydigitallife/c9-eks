@@ -92,11 +92,20 @@ fi
 
 ########################################################################
 # git clone repo
-mkdir /home/ec2-user/environment/git
 
+mkdir /home/ec2-user/environment/git
 cd /home/ec2-user/environment/git
-git clone https://github.com/kubernetes-incubator/metrics-server.git
+
+# git clone https://github.com/kubernetes-incubator/metrics-server.git
 git clone https://github.com/raydigitallife/c9-eks.git
+
+# add .kube folder and kubeconfig
+mkdir /home/ec2-user/.kube
+cp /home/ec2-user/environment/git/c9-eks/k8s-workshop/1.kubectl-setting/kubeconfig.yaml /home/ec2-user/.kube/config
+cp /home/ec2-user/environment/git/c9-eks/k8s-workshop/1.kubectl-setting/aws-auth-cm.yaml /home/ec2-user/.kube/aws-auth-cm.yaml
+
+
+
 
 # update all
 sudo yum update -y
