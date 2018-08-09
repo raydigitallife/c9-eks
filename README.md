@@ -1,26 +1,28 @@
-## AWS-EKS 使用 AWS Cloud 9 做為終端
+# AWS-EKS 使用 AWS Cloud 9 做為終端
 
-### 準備工作  
-- ***登入者需具備AWS Admin / ROOT 權限，以便進行測試***
-- ***假設登入使用者為abc , 需在此使用者的IAM之下產生AccessKey***
-- ***AccessKey非常重要，測試完畢後務必刪除!!!!**
+## 準備工作  
+- **登入者需具備AWS Admin / ROOT 權限，以便進行測試**
+- **假設登入使用者為abc , 需在此使用者的IAM之下產生AccessKey**
+- **AccessKey非常重要，測試完畢後務必刪除!!!!**
 - 設定aws configure為上述的AccessKey
 - 測試一下是否可以使用aws cli , `aws s3 ls`
 
-#### Cloud9的準備
-1.  Cloud9 登入後，透過`c9-first-lab-ide-build.sh`初始化環境
-2.  關閉cloud9自帶的temp credential 
-3.  取得教材 `git clone https://github.com/ckmates/k8s-workshop`
+## Cloud9的準備
+1.  Cloud9 開啟介面後，再終端機下以下指令: `git clone https://github.com/ckmates/k8s-workshop.git`
+2.  透過`c9-first-lab-ide-build.sh`初始化環境
+4.  關閉cloud9自帶的temp credential 
+5.  取得教材 `git clone https://github.com/ckmates/k8s-workshop`
 
-### 建立 EKS cluster
-#### EKS的準備
-1.  建立IAM ROLE 分配 EKS 
-2.  建立SecurityGroup , 名稱 EKS-Master 僅允許tcp 443 即可
-3.  依照畫面指示輸入cluster name等必要欄位，建立EKS過程約十分鐘
-4.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
-5.  等EKS 介面顯示`ACTIVE`完成AWS端準備工作
+## 建立 EKS cluster
+### EKS的準備
+1.  建立IAM ROLE 並賦予EKS 權限
+2.  建立IAM Policy，參考 `https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html`
+3.  建立SecurityGroup , 名稱 EKS-Master 僅允許https 443 即可  
+4.  依照畫面指示輸入cluster name等必要欄位，建立EKS過程約十分鐘
+5.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
+6.  等EKS 介面顯示`ACTIVE`完成AWS端準備工作
 
-#### 設定kubeconfig
+### 設定kubeconfig
 1.  mkdir ~/.kube
 2.  將kubeconfig複製到~/.kube/config
 3.  設定環境變數 `export KUBECONFIG=$KUBECONFIG:~/.kube/config-"cluster-name"`
@@ -39,7 +41,7 @@ NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   7h
 ```
 
-#### 使用cloudformation建立NODE
+### 使用cloudformation建立NODE
 1.  將檔案傳到cloudformation 依序填入cloudformation出現的欄位
 2.  機器類型已經改為t2.medium spot instances
 3.  開完機器約10分鐘左右，最後取得outputs的 value
@@ -56,3 +58,5 @@ ip-172-31-1-30.us-west-2.compute.internal    Ready     <none>    3h        v1.10
 ip-172-31-20-21.us-west-2.compute.internal   Ready     <none>    3h        v1.10.3
 ip-172-31-42-29.us-west-2.compute.internal   Ready     <none>    3h        v1.10.3
 ```
+
+8.  至此已完成Cloud9 與 EKS 的建置工作

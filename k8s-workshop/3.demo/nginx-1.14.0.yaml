@@ -28,14 +28,14 @@ spec:
         imagePullPolicy: IfNotPresent
         name: nginx
         ports:
-        - containerPort: 81
+        - containerPort: 80
           protocol: TCP
         resources: 
           limits:
-            cpu: 0.5
+            cpu: 0.2
             memory: 200Mi
           requests:
-            cpu: 0.3
+            cpu: 0.1
             memory: 100Mi  
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
@@ -58,4 +58,4 @@ spec:
     targetPort: 80
   selector:
     run: nginx
-  type: LoadBalancer
+  type: ClusterIP
