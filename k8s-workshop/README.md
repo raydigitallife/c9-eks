@@ -30,7 +30,7 @@
 1.  建立IAM ROLE並賦予EKS權限  
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_2.png)  
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_3.png)  
-2.  建立IAM Policy參考: `https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html`
+2.  建立IAM Policy參考: <https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html>
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_4.png)  
 3.  建立`SecurityGroup`,名稱 `EKS-Master`, `僅允許https 443`即可  
 4.  建立SSH key
