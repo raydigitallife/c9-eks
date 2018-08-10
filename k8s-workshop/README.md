@@ -9,7 +9,7 @@
 ### Cloud9的初始化設定
 1.  Cloud9 開啟後，於終端機貼入指令: `git clone https://github.com/ckmates/k8s-workshop.git`
 2.  進入`0.cloud9-install`資料夾，執行`c9-lab-ide-build.sh`，執行完畢後請登出 (CTRL+D)並重新開另一個終端機視窗 (ALT+T)
-3.  設定`aws cli`  
+3.  設定`aws cli` , 輸入`aws configure`
 
 ```shell
      $ aws configure
@@ -27,8 +27,11 @@
 
 ## 建立 EKS Cluster
 ### EKS部份
-1.  建立IAM ROLE並賦予EKS權限
+1.  建立IAM ROLE並賦予EKS權限  
+![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_2.png)  
+![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_3.png)  
 2.  建立IAM Policy參考: `https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html`
+![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_4.png)  
 3.  建立SecurityGroup , 名稱 EKS-Master 僅允許https 443即可  
 4.  建立SSH key
 5.  切換到EKS功能，並開始建立Cluster , 依照順序輸入必要欄位，過程 ~10min
