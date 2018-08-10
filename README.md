@@ -22,7 +22,7 @@
 
 
 ### Cloud9的其它設定
--  關閉Cloud9自帶的Temp Credential  
+-  關閉Cloud9自帶的Temp Credential  ![image](/img/snap_1.png)
 -  調整文字大小顏色，以個人舒適為主
 
 ## 建立 EKS Cluster
@@ -31,9 +31,9 @@
 2.  建立IAM Policy參考: `https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html`
 3.  建立SecurityGroup , 名稱 EKS-Master 僅允許https 443即可  
 4.  建立SSH key
-4.  切換到EKS功能，並開始建立Cluster , 依照順序輸入必要欄位，過程 ~10min
-5.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
-6.  等EKS 介面顯示`ACTIVE`完成EKS準備工作
+5.  切換到EKS功能，並開始建立Cluster , 依照順序輸入必要欄位，過程 ~10min
+6.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
+7.  等EKS 介面顯示`ACTIVE`完成EKS準備工作
 
 ### 設定kubeconfig
 1.  在Cloud9初始化的時候已將空白設定複製到/home/ec2-user/.kube/config
@@ -86,4 +86,3 @@ ip-172-31-42-29.us-west-2.compute.internal   Ready     <none>    3h        v1.10
 11.  至此已完成Cloud9 與 EKS 的建置工作
 
 <!-- ![image](https://github.com/raydigitallife/c9-eks/blob/master/snap_1.png) -->
-![image](snap_1.png)
