@@ -22,7 +22,7 @@
 
 
 ### Cloud9的其它設定
--  關閉Cloud9自帶的Temp Credential  ![image](k8s-workshop/img/snap_1.png)  
+-  關閉Cloud9自帶的Temp Credential  ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_1.png)  
 -  調整文字大小顏色，以個人舒適為主
 
 ## 建立 EKS Cluster
