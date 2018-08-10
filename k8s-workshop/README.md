@@ -18,7 +18,7 @@
      Default region name [us-west-2]:
      Default output format [None]:
 ```
-4.  設定完畢後，測試一下是否可以使用aws cli , `aws s3 ls`
+4.  設定完畢後，測試一下aws cli , `aws s3 ls`
 
 
 ### Cloud9的其它設定
@@ -30,16 +30,16 @@
 1.  建立IAM ROLE並賦予EKS權限  
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_2.png)  
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_3.png)  
-2.  建立IAM Policy參考: ![url](https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html)
+2.  建立IAM Policy參考: `https://docs.aws.amazon.com/zh_tw/eks/latest/userguide/EKS_IAM_user_policies.html`
 ![image](https://github.com/raydigitallife/c9-eks/raw/master/k8s-workshop/img/snap_4.png)  
-3.  建立SecurityGroup , 名稱 EKS-Master 僅允許https 443即可  
+3.  建立`SecurityGroup`,名稱 `EKS-Master`, `僅允許https 443`即可  
 4.  建立SSH key
-5.  切換到EKS功能，並開始建立Cluster , 依照順序輸入必要欄位，過程 ~10min
-6.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
-7.  等EKS 介面顯示`ACTIVE`完成EKS準備工作
+5.  切換到EKS功能，並開始建立Cluster , 依照順序輸入必要欄位
+6.  等EKS介面出現`ACTIVE`，過程 ~10min
+7.  將畫面上的`API server endpoint` 與 `Certificate authority`記下備用
 
 ### 設定kubeconfig
-1.  在Cloud9初始化的時候已將空白設定複製到/home/ec2-user/.kube/config
+1.  在Cloud9初始化時,已將空白設定複製到`/home/ec2-user/.kube/config`
 2.  直接使用Cloud9來編輯檔案或使用`vim /home/ec2-user/.kube/config`
 
 找到`server , certificate-authority-data , args欄位`修改成個人的設定  
@@ -56,7 +56,7 @@ args:
 ```  
 
 5.  存檔後在終端機介面輸入 `kubectl config view` 看設定值有沒有正確傳入  
-6.  kubectl get svc 測試是否呼叫到EKS，如沒有問題應該會出現類似以下的訊息:
+6.  `kubectl get svc` 測試是否可呼叫到EKS，如沒有問題應該會出現類似以下的訊息:
 
 ```text
 NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
@@ -67,15 +67,15 @@ kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   7h
 
 1.  從Cloud9左側的欄位中找到`2.add-node`資料夾
 2.  選擇`eks-nodegroup-v2.yaml`按下右建選擇Download到你的電腦桌面
-3.  回到AWS，選擇Cloudformation > `Upload a template to Amazon S3`，  
+3.  回到AWS，選擇`Cloudformation` > `Upload a template to Amazon S3`，  
 選擇`eks-nodegroup-v2.yaml`上傳
 4.  依序填入相關欄位
 5.  機器類型預設是 `t2.medium , Spot Instances`
-6.  完成後會開始建立Node ~10min，最後取得Outputs的 Value
-7.  修改aws-auth-cm.yaml的內容，此檔案位於`/home/ec2-user/.kube/`  
-修改方式與kubeconfig相同
+6.  完成後會開始建立Node ~10min，最後取得`Outputs Value`
+7.  修改`aws-auth-cm.yaml`，檔案位於`/home/ec2-user/.kube/`  
+修改方式與`kubeconfig`相同
 8.  只要調整`- rolearn: <ARN of instance role (not instance profile)>`  
-將之取代為cloudformation outputs value即可
+將之取代為`cloudformation outputs value`即可
 9.  在此目錄下`/home/ec2-user/.kube/`使用`kubectl apply -f aws-auth-cm.yaml` 讓EKS將Node加入
 10. 幾秒後，使用 `kubectl get nodes`，應可取得Node , 狀態Ready即完成建置
 
@@ -87,5 +87,3 @@ ip-172-31-42-29.us-west-2.compute.internal   Ready     <none>    3h        v1.10
 ```
 
 11.  至此已完成Cloud9 與 EKS 的建置工作
-
-<!-- ![image](https://github.com/raydigitallife/c9-eks/blob/master/snap_1.png) -->
