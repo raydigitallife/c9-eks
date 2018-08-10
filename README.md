@@ -85,4 +85,5 @@ ip-172-31-42-29.us-west-2.compute.internal   Ready     <none>    3h        v1.10
 
 11.  至此已完成Cloud9 與 EKS 的建置工作
 
-![image] (https://github.com/raydigitallife/c9-eks/blob/master/snap_1.png)
+<!-- ![image](https://github.com/raydigitallife/c9-eks/blob/master/snap_1.png) -->
+![image](snap_1.png)
