@@ -1,7 +1,3 @@
-# EKS 建立後，依照 CloudFormation 步驟將 WorkerNode 啟動
-# 等候 CloudFormation 完成後取得 outputs value 填入 rolearn 區段
-# 透過 Kubectl apply -f aws-auth-cm.yaml 將 WorkerNode 加入 EKS 叢集
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
